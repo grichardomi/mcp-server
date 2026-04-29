@@ -1,0 +1,18 @@
+{
+  "name": "faxseal-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for FaxSeal — send faxes from Claude",
+  "main": "index.js",
+  "bin": {
+    "faxseal-mcp": "./index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["mcp", "fax", "faxseal", "claude"],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  }
+}

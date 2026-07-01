@@ -1,6 +1,6 @@
 startCommand:
   type: http
-  url: https://faxseal-mcp.up.railway.app/mcp
+  url: https://mcp-server-production-8f66.up.railway.app/mcp
   configSchema:
     type: object
     required:

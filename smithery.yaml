@@ -1,0 +1,18 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Your FaxSeal API key (fsx_...). Generate one at https://faxseal.com/dashboard/api-tokens
+  commandFunction: |-
+    (config) => ({
+      command: "npx",
+      args: ["faxseal-mcp"],
+      env: {
+        FAXSEAL_API_KEY: config.apiKey
+      }
+    })

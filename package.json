@@ -28,6 +28,7 @@
     "healthcare",
     "hipaa"
   ],
+  "mcpName": "io.github.grichardomi/faxseal",
   "license": "MIT",
   "homepage": "https://faxseal.com/api",
   "repository": {

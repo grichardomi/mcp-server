@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.grichardomi/faxseal",
+  "title": "FaxSeal",
+  "description": "Send, receive, and verify faxes from AI assistants and agents. Supports faxing from URL or plain text, delivery status, inbox with OCR, and cryptographic attestation via Sigstore/Rekor.",
+  "version": "2.0.0",
+  "repository": {
+    "url": "https://github.com/grichardomi/mcp-server",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp-server-production-8f66.up.railway.app/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "name": "faxseal-mcp",
+      "version": "2.0.0",
+      "runtime": "node",
+      "environmentVariables": [
+        {
+          "name": "FAXSEAL_API_KEY",
+          "description": "Your FaxSeal API key (fsx_...). Generate one at https://faxseal.com/dashboard/api-tokens",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

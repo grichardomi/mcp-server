@@ -1,17 +1,38 @@
 {
   "name": "faxseal-mcp",
-  "version": "1.0.0",
-  "description": "MCP server for FaxSeal — send faxes from Claude",
+  "version": "2.0.0",
+  "description": "MCP server for FaxSeal — send, receive, and verify faxes from AI assistants and agents",
   "main": "index.js",
   "bin": {
     "faxseal-mcp": "./index.js"
   },
   "type": "module",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["mcp", "fax", "faxseal", "claude"],
+  "keywords": [
+    "mcp",
+    "fax",
+    "faxseal",
+    "claude",
+    "ai-agent",
+    "model-context-protocol",
+    "document",
+    "healthcare",
+    "hipaa"
+  ],
   "license": "MIT",
+  "homepage": "https://faxseal.com/api",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/faxseal/mcp-server"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0"
   }

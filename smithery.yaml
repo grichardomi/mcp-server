@@ -1,5 +1,6 @@
 startCommand:
-  type: stdio
+  type: http
+  url: https://faxseal-mcp.up.railway.app/mcp
   configSchema:
     type: object
     required:
@@ -8,11 +9,5 @@ startCommand:
       apiKey:
         type: string
         description: Your FaxSeal API key (fsx_...). Generate one at https://faxseal.com/dashboard/api-tokens
-  commandFunction: |-
-    (config) => ({
-      command: "npx",
-      args: ["faxseal-mcp"],
-      env: {
-        FAXSEAL_API_KEY: config.apiKey
-      }
-    })
+  exampleConfig:
+    apiKey: fsx_your_token_here

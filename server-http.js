@@ -300,6 +300,18 @@ const httpServer = createServer(async (req, res) => {
     return;
   }
 
+  // OAuth Resource Server metadata (RFC 9728) — tells clients we use bearer tokens, not OAuth
+  if (url.pathname === '/.well-known/oauth-protected-resource') {
+    const resource = `https://${req.headers.host}`;
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      resource,
+      bearer_methods_supported: ['header', 'query'],
+      resource_documentation: 'https://faxseal.com/docs/api',
+    }));
+    return;
+  }
+
   if (url.pathname === '/mcp') {
     const authHeader = req.headers['authorization'] ?? '';
     const apiKey = authHeader.startsWith('Bearer ')

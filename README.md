@@ -8,6 +8,7 @@ Send, receive, and verify faxes from AI assistants and agents via the [Model Con
 |---|---|
 | `send_fax` | Send a fax from a publicly accessible PDF URL |
 | `send_fax_text` | Type content directly — FaxSeal converts it to a PDF and sends |
+| `quote_fax` | Estimate pages and credits before sending |
 | `get_fax_status` | Check delivery status of a sent fax |
 | `get_credits` | Check your FaxSeal credit balance |
 | `list_received_faxes` | List faxes in your inbox with OCR text |

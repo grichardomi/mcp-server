@@ -1,6 +1,6 @@
 {
   "name": "faxseal-mcp",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "MCP server for FaxSeal — send, receive, and verify faxes from AI assistants and agents",
   "main": "index.js",
   "bin": {
@@ -8,7 +8,10 @@
   },
   "type": "module",
   "files": [
-    "index.js"
+    "index.js",
+    "server-http.js",
+    "server.json",
+    "smithery.yaml"
   ],
   "engines": {
     "node": ">=20"
@@ -33,7 +36,7 @@
   "homepage": "https://faxseal.com/api",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/faxseal/mcp-server.git"
+    "url": "git+https://github.com/grichardomi/mcp-server.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0"

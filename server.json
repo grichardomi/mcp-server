@@ -3,7 +3,7 @@
   "name": "io.github.grichardomi/faxseal",
   "title": "FaxSeal",
   "description": "Send, receive, and verify faxes from AI assistants and agents via FaxSeal.",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "repository": {
     "url": "https://github.com/grichardomi/mcp-server",
     "source": "github"
@@ -19,7 +19,7 @@
       "registryType": "npm",
       "name": "faxseal-mcp",
       "identifier": "faxseal-mcp",
-      "version": "2.0.1",
+      "version": "2.1.0",
       "runtime": "node",
       "transport": { "type": "stdio" },
       "environmentVariables": [

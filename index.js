@@ -9,6 +9,7 @@ import {
 const BASE_URL = (process.env.FAXSEAL_BASE_URL ?? 'https://faxseal.com').replace(/\/+$/, '');
 const API_KEY  = process.env.FAXSEAL_API_KEY ?? '';
 const FETCH_TIMEOUT_MS = 30_000;
+const SERVER_VERSION = '2.1.0';
 
 if (!API_KEY) {
   process.stderr.write('Error: FAXSEAL_API_KEY environment variable is required.\n');
@@ -110,6 +111,34 @@ const handlers = {
       `Pages: ${data.pages}`,
       `Credits used: ${data.credits_used} (${data.credits_remaining} remaining)`,
       `Track: ${data.track_url}`,
+    ]);
+  },
+
+  quote_fax: async (args) => {
+    if (!args.to) throw new Error('to is required');
+    if (!args.pages && !args.content && !args.file_url) {
+      throw new Error('one of pages, content, or file_url is required');
+    }
+
+    const data = await apiFetch('/api/v1/fax/quote', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({
+        to: args.to,
+        pages: args.pages,
+        content: args.content,
+        file_url: args.file_url,
+        subject: args.subject,
+      }),
+    });
+
+    return ok([
+      `To: ${data.to_number}`,
+      `Zone: ${data.zone}`,
+      `Pages: ${data.pages}`,
+      `Credits required: ${data.credits_required}`,
+      `Credits available: ${data.credits_available}`,
+      `Can send: ${data.can_send}`,
     ]);
   },
 
@@ -243,6 +272,22 @@ const TOOL_DEFS = [
     },
   },
   {
+    name: 'quote_fax',
+    description:
+      'Estimate pages and credits for a fax before sending. Accepts known page count, plain text content, or a PDF URL.',
+    inputSchema: {
+      type: 'object',
+      required: ['to'],
+      properties: {
+        to:       { type: 'string', description: 'Destination fax number in E.164 format, e.g. +12025551234' },
+        pages:    { type: 'number', description: 'Known page count, if already available' },
+        content:  { type: 'string', description: 'Plain-text fax body to render and quote' },
+        file_url: { type: 'string', description: 'Publicly accessible HTTPS URL to a PDF file to quote' },
+        subject:  { type: 'string', description: 'Optional subject when quoting plain text content' },
+      },
+    },
+  },
+  {
     name: 'get_fax_status',
     description:
       'Check the delivery status of a sent fax. Status progresses: queued → sending → delivered or failed.',
@@ -296,7 +341,7 @@ const TOOL_DEFS = [
 // ---------------------------------------------------------------------------
 
 const server = new Server(
-  { name: 'faxseal-mcp', version: '2.0.0' },
+  { name: 'faxseal-mcp', version: SERVER_VERSION },
   { capabilities: { tools: {} } },
 );
 
